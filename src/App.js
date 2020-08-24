@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import { FormControl, Select, MenuItem } from '@material-ui/core';
+import InfoBox from './components/InfoBox';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -49,6 +50,11 @@ function App() {
             ))}
           </Select>
         </FormControl>
+      </div>
+      <div className='app__stats'>
+        <InfoBox title='Coronavirus Cases' cases={123} total={2000} />
+        <InfoBox title='Recovered' cases={1234} total={3000} />
+        <InfoBox title='Deaths' cases={12345} total={4000} />
       </div>
     </div>
   );
