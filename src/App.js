@@ -9,11 +9,12 @@ import {
   CardContent,
 } from '@material-ui/core';
 
-import InfoBox from './components/InfoBox';
-import Map from './components/Map';
+import InfoBox from './components/infobox/InfoBox';
+import Map from './components/map/Map';
 import Table from './components/table/Table';
 
 import { sortData } from './utils';
+import LineGraph from './components/linegraph/LineGraph';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -114,6 +115,7 @@ function App() {
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
           <h3>Worldwide new cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
