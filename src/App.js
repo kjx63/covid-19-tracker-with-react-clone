@@ -15,12 +15,16 @@ import Table from './components/table/Table';
 
 import { sortData } from './utils';
 import LineGraph from './components/linegraph/LineGraph';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 36, lng: 138 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
     try {
@@ -46,6 +50,7 @@ function App() {
 
       const sortedData = sortData(data);
       setTableData(sortedData);
+      setMapCountries(data);
       setCountries(countries);
     };
     getCountriesData();
@@ -65,6 +70,10 @@ function App() {
 
       setCountry(countryCode);
       setCountryInfo(data);
+
+      setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
+
+      setMapZoom(4);
     } catch (err) {
       console.error(err.message);
     }
@@ -108,7 +117,7 @@ function App() {
           />
         </div>
 
-        <Map />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className='app__right'>
         <CardContent>
